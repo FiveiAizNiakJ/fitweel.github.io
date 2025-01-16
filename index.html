@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Changing Site</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            transition: background-color 0.5s ease-in-out;
+        }
+        .week1 {
+            background-color: black;
+        }
+        .week2 {
+            background-color: gray;
+        }
+        .week3 {
+            background-color: black;
+        }
+        .week4 {
+            background-color: white;
+            color: black; /* Adjust text color for visibility on white background */
+        }
+        #content {
+            font-size: 90px; /* Increase the font size */
+        }
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+
+    <script>
+        // Get the current date and calculate the week in the cycle
+        const currentDate = new Date();
+        const startWeek = new Date('2025-01-06'); // Start date of the first cycle
+        const diffInTime = currentDate - startWeek;
+        const diffInWeeks = Math.floor(diffInTime / (1000 * 60 * 60 * 24 * 7));
+        const weekNumber = (diffInWeeks % 4) + 1; // Get week in the cycle (1-4)
+
+        // Get content div and set class and text based on week number
+        const contentDiv = document.getElementById('content');
+        let text = '';
+
+        switch(weekNumber) {
+            case 1:
+                document.body.classList.add('week1');
+                text = 'Тежка седмица';
+                break;
+            case 2:
+                document.body.classList.add('week2');
+                text = 'Лека седмица';
+                break;
+            case 3:
+                document.body.classList.add('week3');
+                text = 'Тежка седмица';
+                break;
+            case 4:
+                document.body.classList.add('week4');
+                text = 'Почивка';
+                break;
+        }
+
+        contentDiv.textContent = text;
+    </script>
+</body>
+</html>
